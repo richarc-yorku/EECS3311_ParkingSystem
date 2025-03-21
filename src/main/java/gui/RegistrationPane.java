@@ -60,6 +60,5 @@ public class RegistrationPane extends JPanel {
 		});
 		registerationBtn.setBounds(179, 247, 89, 23);
 		add(registerationBtn);
-
 	}
 }
