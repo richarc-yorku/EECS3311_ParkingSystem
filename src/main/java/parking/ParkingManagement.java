@@ -7,41 +7,85 @@ public class ParkingManagement {
 	
 	private static ArrayList<ParkingLot> lots = new ArrayList<ParkingLot>();
 	
-	public static void addLot() {
+	public static void addLot(ParkingLot lot) {
 		//ToDo
+		lots.add(lot);
 	}
 	
 	public static ArrayList<ParkingLot> getLots(){
-		return lots; // should this return a copy?
+		return new ArrayList<>(lots); // returns copy to prevent change
 	}
 	
 	public static void setLotStatus(int lotID, Boolean lotStatus) {
 		//ToDo
+
+		for(ParkingLot lot : lots){
+			if(lot.getId() == lotID){
+				lot.setAvailable(lolStatus);
+				break; // can get out of this easier with lotstatusNum and just set it to 1, with it in the for
+			}
+		}
 	}
 	
 	public static void setSpotStatus(int lotID, int spotID, Boolean spotStatus) {
 		//ToDo
+	
+		for (ParkingLot lot : lots) {
+            		if (lot.getId() == lotID) {
+                		lot.setSpotAvailability(spotID, spotStatus);
+                		break; // same thing as above
+            		}
+        	}
 	}
 	
 	//Client parameter was added to the booking functions to make backend easier to implement - Richard
 	
 	public static boolean createBooking(Client user, int lotID, int spotID, int startTime, int endTime) {
 		//ToDo
+		
+		for (ParkingLot lot : lots) {
+            		if (lot.getId() == lotID) {
+                		return lot.bookSpot(user, spotID, startTime, endTime);
+            		}
+        	}
+        	
 		return false;
 	}
 	
 	public static boolean editBooking(Client user, int startTime, int endTime) {
 		//ToDo
+
+		 for (ParkingLot lot : lots) {
+            		if (lot.editBooking(user, startTime, endTime)) {
+                		return true;
+            		}
+        	}
+		
 		return false;
 	}
 	
 	public static boolean extendBooking(Client user, int endTime) {
 		//ToDo
+		
+		for (ParkingLot lot : lots) {
+            		if (lot.extendBooking(user, endTime)) {
+                		return true;
+            		}
+        	}
+		
 		return false;
 	}
 	
 	public static boolean cancelBooking(Client user) {
 		//ToDo
+		
+		for (ParkingLot lot : lots) {
+            		if (lot.cancelBooking(user)) {
+                		return true;
+            		}
+        	}
+		
 		return false;
 	}
 }
+	// May have missunderstood the above ones cause it was boolean but if it doesn't make sense I'll fix in the morning. Just putting down thoughts mainly.
