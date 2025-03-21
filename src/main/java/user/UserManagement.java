@@ -21,9 +21,39 @@ public class UserManagement {
 	 * @param password
 	 * @return If username exists on database, and if password is strong enough
 	 */
-	protected Boolean checkCredentials(String username, String password) {
-		//ToDo  - Need DB access - Arthur
-		return null;
+	protected Boolean checkCredentials(String username, String password) {		
+		// Checking username availability
+		
+		// Throw an error to show specifically that username is unavailable? - Arthur
+		boolean userNameExists = users.stream().anyMatch(user -> user.getUsername().equals(username));
+		if(userNameExists) return false;
+		
+		userNameExists = managers.stream().anyMatch(manager -> manager.getUsername().equals(username));
+		if(userNameExists) return false;
+		
+		/* Checking password existence in database */
+		// ToDo
+		
+		/* Checking Password Strength */
+		
+		// If we want to we could throw an error at each check condition to dynamically tell the user what conditions they're not meeting - Arthur
+		
+		// Check password length
+		if(password.length() < 8) return false;
+		
+		// Check if password has lower case characters
+		if(!password.chars().anyMatch(Character::isLowerCase)) return false;
+		
+		// Check if password has upper case characters
+		if(!password.chars().anyMatch(Character::isUpperCase)) return false;
+		
+		// Check if password has numbers
+		if(!password.chars().anyMatch(Character::isDigit)) return false;
+		
+		// Check if password has symbols
+		if(!password.chars().anyMatch(c -> !Character.isLetterOrDigit(c))) return false;
+		
+		return true;
 	}
 	
 	public ArrayList<Manager> viewManagers(){
@@ -84,6 +114,6 @@ public class UserManagement {
 		users.remove(toDeleteUser);
 		
 		// Remove user from DB
-		// ToD
+		// ToDo
 	}
 }
