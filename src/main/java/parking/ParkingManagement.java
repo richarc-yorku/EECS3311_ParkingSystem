@@ -102,3 +102,44 @@ public class ParkingManagement {
 	}
 }
 	// May have missunderstood the above ones cause it was boolean but if it doesn't make sense I'll fix in the morning. Just putting down thoughts mainly.
+
+class Booking {
+    	private Client user;
+    	private int lotID;
+    	private int spotID;
+    	private int startTime;
+    	private int endTime;
+    
+    	public Booking(Client user, int lotID, int spotID, int startTime, int endTime) {
+        	this.user = user;
+        	this.lotID = lotID;
+        	this.spotID = spotID;
+        	this.startTime = startTime;
+        	this.endTime = endTime;
+    	}
+    
+	public int getLotID() {
+		return lotID;
+	}
+	    
+	public int getSpotID() {
+		return spotID;
+	}
+	    
+	public int getStartTime() {
+	        return startTime;
+	}
+	    
+	public void setStartTime(int startTime) {
+		this.startTime = startTime;
+	}
+	    
+	public int getEndTime() {
+	        return endTime;
+	}
+	    
+	public void setEndTime(int endTime) {
+	        this.endTime = endTime;
+	}
+}
+	
