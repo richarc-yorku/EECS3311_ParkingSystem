@@ -24,8 +24,9 @@ public class ParkingSpot extends ParkingLot {
         this.spotStatus = status;
     }
 
-    public void updateSpot() {
-        this.spotStatus = !sensor.isOccupied(); // not sure if this is enough but have it as this for now
+    public void updateSpot(String detectedLicense) {
+        sensor.scanSpot(detectedLicense);
+        this.spotStatus = !sensor.isOccupied();
     }
 }
 
