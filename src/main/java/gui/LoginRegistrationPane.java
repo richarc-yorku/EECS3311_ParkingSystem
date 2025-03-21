@@ -32,10 +32,8 @@ public class LoginRegistrationPane extends JPanel {
 	public LoginRegistrationPane() {
 		setLayout(new CardLayout(0, 0));
 		setBounds(0, 0, 450, 300);
-
-
 		
-		JPanel loginPane = new LoginPane();
+		JPanel loginPane = new JPanel();
 		add(loginPane, "name_10093064574100");
 		
 		loginPane.setLayout(null);
@@ -109,7 +107,7 @@ public class LoginRegistrationPane extends JPanel {
 		loginPane.add(registrationPaneChangeBtn);
 		
 		// Registration Pane Construction
-		JPanel registrationPane = new RegistrationPane();
+		JPanel registrationPane = new JPanel();
 		add(registrationPane, "name_10093083458200");
 		
 		registrationPane.setLayout(null);
