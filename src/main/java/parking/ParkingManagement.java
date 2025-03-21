@@ -1,6 +1,8 @@
 package parking;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import user.Client;
 
 public class ParkingManagement {
