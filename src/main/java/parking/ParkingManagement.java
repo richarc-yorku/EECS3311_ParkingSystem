@@ -6,6 +6,7 @@ import user.Client;
 public class ParkingManagement {
 	
 	private static ArrayList<ParkingLot> lots = new ArrayList<ParkingLot>();
+	private static HashMap<Client, Booking> bookings = new HashMap<>(); // Could do something like this?
 	
 	public static void addLot(ParkingLot lot) {
 		//ToDo
@@ -43,9 +44,12 @@ public class ParkingManagement {
 	public static boolean createBooking(Client user, int lotID, int spotID, int startTime, int endTime) {
 		//ToDo
 		
-		for (ParkingLot lot : lots) {
-            		if (lot.getId() == lotID) {
-                		return lot.bookSpot(user, spotID, startTime, endTime);
+		 for (ParkingLot lot : lots) {
+            		if (lot.getId() == lotID && lot.isSpotAvailable(spotID)) {
+                		Booking booking = new Booking(user, lotID, spotID, startTime, endTime);
+               			bookings.put(user, booking);
+                		lot.setSpotAvailability(spotID, false);
+                		return true;
             		}
         	}
         	
@@ -55,10 +59,11 @@ public class ParkingManagement {
 	public static boolean editBooking(Client user, int startTime, int endTime) {
 		//ToDo
 
-		 for (ParkingLot lot : lots) {
-            		if (lot.editBooking(user, startTime, endTime)) {
-                		return true;
-            		}
+		if (bookings.containsKey(user)) {
+            		Booking booking = bookings.get(user);
+            		booking.setStartTime(startTime);
+            		booking.setEndTime(endTime);
+            		return true;
         	}
 		
 		return false;
@@ -67,21 +72,27 @@ public class ParkingManagement {
 	public static boolean extendBooking(Client user, int endTime) {
 		//ToDo
 		
-		for (ParkingLot lot : lots) {
-            		if (lot.extendBooking(user, endTime)) {
+		if (bookings.containsKey(user)) {
+            		Booking booking = bookings.get(user);
+            		if (endTime > booking.getEndTime()) {
+                		booking.setEndTime(endTime);
                 		return true;
             		}
         	}
-		
+		 
 		return false;
 	}
 	
 	public static boolean cancelBooking(Client user) {
 		//ToDo
 		
-		for (ParkingLot lot : lots) {
-            		if (lot.cancelBooking(user)) {
-                		return true;
+		 if (bookings.containsKey(user)) {
+            		Booking booking = bookings.remove(user);
+            		for (ParkingLot lot : lots) {
+                		if (lot.getId() == booking.getLotID()) {
+                    			lot.setSpotAvailability(booking.getSpotID(), true);
+                    			return true;
+                		}
             		}
         	}
 		
