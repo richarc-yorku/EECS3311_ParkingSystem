@@ -1,20 +1,24 @@
 package parking;
 
 public class Sensor {
-	
-	private String license;
-	private Boolean isOccupied;
-	
-	public Sensor() {
-		license = "";
-		isOccupied = false;
-	}
-	
-	public void scanSpot() {
-		//ToDo: update license & isOccupied
-	}
-	
-	public String getLicense() {
-		return license;
-	}
+    private String license;
+    private boolean isOccupied;
+
+    public Sensor() {
+        this.license = "";
+        this.isOccupied = false;
+    }
+
+    public String getLicense() {
+        return license;
+    }
+
+    public boolean isOccupied() {
+        return isOccupied;
+    }
+
+    public void scanSpot(String detectedLicense) {
+        this.license = detectedLicense;
+        this.isOccupied = !detectedLicense.isEmpty();
+    }
 }
