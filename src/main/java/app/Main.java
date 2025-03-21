@@ -1,6 +1,7 @@
 package app;
 
-import java.awt.EventQueue;
+import java.awt.*;
+import javax.swing.*;
 
 import gui.*;
 
@@ -12,8 +13,8 @@ public class Main {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainWindow frame = new MainWindow();
-					frame.setVisible(true);
+					JFrame mainFrame = MainWindow.getWindow();
+					mainFrame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

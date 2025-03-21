@@ -18,29 +18,34 @@ import java.util.Arrays;
 public class LoginRegistrationPane extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private static String usernamePrompt = "Username";
-	private static String passwordPrompt = "Password";
+	
+	private static final String passwordPrompt = "Password";
+	
+	private static final LoginRegistrationPane pane = new LoginRegistrationPane();
 	
 	private JPasswordField passwordField;
-	private JTextField txtUsername;
-	private JTextField usernameField;
-	private JTextField emailField;
+	private JTextField userField;
+	private JTextField newUserField;
+	private JPasswordField newPasswordField;
 
+	public static LoginRegistrationPane getPane() {
+		return pane;
+	}
+	
 	/**
 	 * Create the panel.
 	 */
-	public LoginRegistrationPane() {
+	private LoginRegistrationPane() {
 		setLayout(new CardLayout(0, 0));
-		setBounds(0, 0, 450, 300);
-
-
+		setBounds(0, 0, 1280, 720);
 		
-		JPanel loginPane = new LoginPane();
-		add(loginPane, "name_10093064574100");
+		JPanel loginPane = new JPanel();
+		add(loginPane, "login");
 		
 		loginPane.setLayout(null);
 		
 		passwordField = new JPasswordField();
+		passwordField.setFont(new Font("Dialog", Font.PLAIN, 16));
 		passwordField.addFocusListener(new FocusListener() {
 			public void focusGained(FocusEvent e) {
 				if (Arrays.equals(passwordField.getPassword(), passwordPrompt.toCharArray())){
@@ -56,102 +61,141 @@ public class LoginRegistrationPane extends JPanel {
 			}
 		});
 		passwordField.setText(passwordPrompt);
-		passwordField.setBounds(132, 129, 205, 35);
+		passwordField.setBounds(505, 238, 205, 35);
 		passwordField.setToolTipText("Password");
 		passwordField.setColumns(1);
 		passwordField.setHorizontalAlignment(SwingConstants.LEFT);
 		loginPane.add(passwordField);
 		
-		txtUsername = new JTextField();
-		txtUsername.addFocusListener(new FocusListener() {
+		userField = new JTextField();
+		userField.setFont(new Font("Dialog", Font.PLAIN, 16));
+		userField.addFocusListener(new FocusListener() {
 			public void focusGained(FocusEvent e) {
-				if (txtUsername.getText().equals(usernamePrompt)) {
-					txtUsername.setText("");
+				if (userField.getText().equals("Email")) {
+					userField.setText("");
 				}
 			}
 			public void focusLost(FocusEvent e) {
-				if (txtUsername.getText().equals("")) {
-					txtUsername.setText(usernamePrompt);
+				if (userField.getText().equals("")) {
+					userField.setText("Email");
 				}
 			}
 		});
-		txtUsername.setBounds(132, 83, 205, 35);
-		txtUsername.setHorizontalAlignment(SwingConstants.CENTER);
-		txtUsername.setText("Username");
-		loginPane.add(txtUsername);
-		txtUsername.setColumns(10);
+		userField.setBounds(505, 134, 205, 35);
+		userField.setHorizontalAlignment(SwingConstants.CENTER);
+		userField.setText("Email");
+		userField.setColumns(10);
+		loginPane.add(userField);
+		
 		
 		JButton loginBtn = new JButton("Log in");
-		loginBtn.setBounds(182, 225, 89, 23);
+		loginBtn.setFont(new Font("Verdana", Font.PLAIN, 20));
+		loginBtn.setBounds(526, 376, 150, 23);
 		loginBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// Add login authentication here
-				// Check if password is strong enough
+
+				
+				((CardLayout)getParent().getLayout()).show(getParent(), "mainPage");
 			}
 		});
 		loginPane.add(loginBtn);
 		
-		JLabel signInLabel = new JLabel("Sign in");
-		signInLabel.setBounds(182, 11, 89, 35);
-		signInLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		signInLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		loginPane.add(signInLabel);
+		JLabel signInLbl = new JLabel("Sign in");
+		signInLbl.setBounds(545, 11, 116, 35);
+		signInLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		signInLbl.setFont(new Font("Verdana", Font.BOLD, 24));
+		loginPane.add(signInLbl);
 		
-		JButton registrationPaneChangeBtn = new JButton("Register");
-		registrationPaneChangeBtn.setBounds(182, 259, 89, 23);
-		registrationPaneChangeBtn.addMouseListener(new MouseAdapter() {
+		JButton switchRegisterBtn = new JButton("Register");
+		switchRegisterBtn.setFont(new Font("Verdana", Font.PLAIN, 20));
+		switchRegisterBtn.setBounds(526, 440, 150, 23);
+		switchRegisterBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// Add registration pane change logic here
+				((CardLayout)getLayout()).show(getPane(), "register");
 			}
 		});
-		loginPane.add(registrationPaneChangeBtn);
+		loginPane.add(switchRegisterBtn);
 		
 		// Registration Pane Construction
-		JPanel registrationPane = new RegistrationPane();
-		add(registrationPane, "name_10093083458200");
+		JPanel registrationPane = new JPanel();
+		add(registrationPane, "register");
 		
 		registrationPane.setLayout(null);
 		
-		JLabel lblRegistration = new JLabel("Registration");
-		lblRegistration.setHorizontalAlignment(SwingConstants.CENTER);
-		lblRegistration.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblRegistration.setBounds(163, 11, 119, 35);
-		registrationPane.add(lblRegistration);
+		JLabel registerLbl = new JLabel("Registration");
+		registerLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		registerLbl.setFont(new Font("Verdana", Font.BOLD, 24));
+		registerLbl.setBounds(526, 11, 165, 35);
+		registrationPane.add(registerLbl);
 		
-		usernameField = new JTextField();
-		usernameField.setText("Username");
-		usernameField.setHorizontalAlignment(SwingConstants.LEFT);
-		usernameField.setColumns(10);
-		usernameField.setBounds(121, 73, 205, 35);
-		registrationPane.add(usernameField);
+		newUserField = new JTextField();
+		newUserField.setFont(new Font("Dialog", Font.PLAIN, 16));
+		newUserField.addFocusListener(new FocusListener() {
+			public void focusGained(FocusEvent e) {
+				if (newUserField.getText().equals("Email")) {
+					newUserField.setText("");
+				}
+			}
+			public void focusLost(FocusEvent e) {
+				if (newUserField.getText().equals("")) {
+					newUserField.setText("Email");
+				}
+			}
+		});
+		newUserField.setBounds(505, 134, 205, 35);
+		newUserField.setHorizontalAlignment(SwingConstants.CENTER);
+		newUserField.setText("Email");
+		newUserField.setColumns(10);
+		registrationPane.add(newUserField);
 		
-		passwordField = new JPasswordField();
-		passwordField.setToolTipText("Password");
-		passwordField.setHorizontalAlignment(SwingConstants.LEFT);
-		passwordField.setColumns(1);
-		passwordField.setBounds(121, 165, 205, 35);
-		registrationPane.add(passwordField);
-		
-		emailField = new JTextField();
-		emailField.setText("Email");
-		emailField.setHorizontalAlignment(SwingConstants.LEFT);
-		emailField.setColumns(10);
-		emailField.setBounds(121, 119, 205, 35);
-		registrationPane.add(emailField);
-		
-		JButton registerationBtn = new JButton("Register");
-		registerationBtn.addMouseListener(new MouseAdapter() {
+		JButton registerBtn = new JButton("Register");
+		registerBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// Add registration authentication logic here
 				// Also check if password is strong enough
 			}
 		});
-		registerationBtn.setBounds(179, 247, 89, 23);
-		registrationPane.add(registerationBtn);
-
+		registerBtn.setFont(new Font("Verdana", Font.PLAIN, 20));
+		registerBtn.setBounds(526, 376, 150, 23);
+		registrationPane.add(registerBtn);
+		
+		newPasswordField = new JPasswordField();
+		newPasswordField.setFont(new Font("Dialog", Font.PLAIN, 16));
+		newPasswordField.addFocusListener(new FocusListener() {
+			public void focusGained(FocusEvent e) {
+				if (Arrays.equals(newPasswordField.getPassword(), passwordPrompt.toCharArray())){
+					newPasswordField.setText("");
+					newPasswordField.setEchoChar('*');
+				}
+			}
+			public void focusLost(FocusEvent e) {
+				if (newPasswordField.getPassword().length == 0){							
+					newPasswordField.setText(passwordPrompt);
+					newPasswordField.setEchoChar((char)0);
+				}
+			}
+		});
+		newPasswordField.setText(passwordPrompt);
+		newPasswordField.setBounds(505, 238, 205, 35);
+		newPasswordField.setToolTipText("Password");
+		newPasswordField.setColumns(1);
+		newPasswordField.setHorizontalAlignment(SwingConstants.LEFT);
+		registrationPane.add(newPasswordField);
+		
+		JButton cancelBtn = new JButton("Cancel");
+		cancelBtn.setFont(new Font("Verdana", Font.PLAIN, 20));
+		cancelBtn.setBounds(526, 440, 150, 23);
+		cancelBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				((CardLayout)getLayout()).show(getPane(), "login");
+			}
+		});
+		registrationPane.add(cancelBtn);
 	}
-
 }

@@ -16,13 +16,17 @@ public class MainWindow extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel basePane;
 
+	private static final MainWindow main = new MainWindow();
 	
-	
+	public static MainWindow getWindow() {
+		return main;
+	}
 	
 	/**
 	 * Create the frame.
 	 */
-	public MainWindow() {
+	private MainWindow() {
+		setResizable(false);
 		setTitle("Parking System");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1280, 720);
@@ -34,7 +38,7 @@ public class MainWindow extends JFrame {
 		basePane.setLayout(new CardLayout(0, 0));
 		
 		JPanel borderPane = new JPanel();
-		basePane.add(borderPane, "name_672470444800");
+		basePane.add(borderPane, "mainPage");
 		borderPane.setLayout(new BorderLayout(0, 0));
 		
 		JPanel headerPane = new JPanel();
@@ -90,6 +94,12 @@ public class MainWindow extends JFrame {
 		mainPane.setBackground(new Color(255, 255, 255));
 		borderPane.add(mainPane, BorderLayout.CENTER);
 		mainPane.setLayout(new CardLayout(0, 0));
+		
+		//Combining
+		JPanel loginRegisterPane = LoginRegistrationPane.getPane();
+		basePane.add(loginRegisterPane, "loginMenu");
+		((CardLayout) basePane.getLayout()).show(basePane, "loginMenu");
+		
 	}
 
 }
