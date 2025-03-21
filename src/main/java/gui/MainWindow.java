@@ -10,6 +10,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class MainWindow extends JFrame {
 
@@ -85,6 +87,12 @@ public class MainWindow extends JFrame {
 		extraOptPane.add(managerFt3Btn);
 		
 		JButton logOutBtn = new JButton("Log Out");
+		logOutBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				((CardLayout) basePane.getLayout()).show(basePane, "loginMenu");
+			}
+		});
 		logOutBtn.setForeground(new Color(226, 230, 226));
 		logOutBtn.setBackground(new Color(44, 45, 44));
 		logOutBtn.setFont(new Font("Verdana", Font.PLAIN, 24));
