@@ -32,6 +32,7 @@ public class MainWindow extends JFrame {
 		setTitle("Parking System");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1280, 720);
+		setLocationRelativeTo(null);
 		basePane = new JPanel();
 		basePane.setBackground(new Color(226, 230, 226));
 		basePane.setBorder(new EmptyBorder(5, 5, 5, 5));
