@@ -94,7 +94,6 @@ public class LoginRegistrationPane extends JPanel {
 		userField.setColumns(10);
 		loginPane.add(userField);
 		
-		
 		JButton loginBtn = new JButton("Log in");
 		loginBtn.setForeground(new Color(44, 45, 44));
 		loginBtn.setBackground(new Color(255, 255, 255));
@@ -104,7 +103,10 @@ public class LoginRegistrationPane extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// Add login authentication here
-
+				
+				//Can use userField.getText and new String(passwordField.getPassword()) to get user credentials on login page.
+				System.out.println(userField.getText());
+				System.out.println(new String(passwordField.getPassword()));
 				
 				((CardLayout)getParent().getLayout()).show(getParent(), "mainPage");
 			}
@@ -175,6 +177,10 @@ public class LoginRegistrationPane extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				// Add registration authentication logic here
 				// Also check if password is strong enough
+				
+				//Can use newUserField.getText and new String(newPasswordField.getPassword()) to get user credentials on register page.
+				System.out.println(newUserField.getText());
+				System.out.println(new String(newPasswordField.getPassword()));
 			}
 		});
 		registerBtn.setFont(new Font("Verdana", Font.PLAIN, 20));
