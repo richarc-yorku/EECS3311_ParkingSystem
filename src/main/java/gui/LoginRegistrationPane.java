@@ -43,12 +43,13 @@ public class LoginRegistrationPane extends JPanel {
 		setBounds(0, 0, 1280, 720);
 		
 		JPanel loginPane = new JPanel();
-		loginPane.setBackground(new Color(226, 230, 226));
+		loginPane.setBackground(new Color(255, 255, 255));
 		add(loginPane, "login");
 		
 		loginPane.setLayout(null);
 		
 		passwordField = new JPasswordField();
+		passwordField.setBackground(new Color(255, 255, 255));
 		passwordField.setForeground(new Color(44, 45, 44));
 		passwordField.setFont(new Font("Dialog", Font.PLAIN, 16));
 		passwordField.addFocusListener(new FocusListener() {
@@ -70,10 +71,10 @@ public class LoginRegistrationPane extends JPanel {
 		passwordField.setBounds(505, 238, 205, 35);
 		passwordField.setToolTipText("Password");
 		passwordField.setColumns(1);
-		passwordField.setHorizontalAlignment(SwingConstants.LEFT);
 		loginPane.add(passwordField);
 		
 		userField = new JTextField();
+		userField.setBackground(new Color(255, 255, 255));
 		userField.setForeground(new Color(44, 45, 44));
 		userField.setFont(new Font("Dialog", Font.PLAIN, 16));
 		userField.addFocusListener(new FocusListener() {
@@ -89,7 +90,6 @@ public class LoginRegistrationPane extends JPanel {
 			}
 		});
 		userField.setBounds(505, 134, 205, 35);
-		userField.setHorizontalAlignment(SwingConstants.LEFT);
 		userField.setText(userPrompt);
 		userField.setColumns(10);
 		loginPane.add(userField);
@@ -115,9 +115,9 @@ public class LoginRegistrationPane extends JPanel {
 		
 		JLabel signInLbl = new JLabel("Sign in");
 		signInLbl.setForeground(new Color(0, 0, 0));
-		signInLbl.setBounds(545, 11, 116, 35);
+		signInLbl.setBounds(526, 11, 150, 40);
 		signInLbl.setHorizontalAlignment(SwingConstants.CENTER);
-		signInLbl.setFont(new Font("Verdana", Font.BOLD, 24));
+		signInLbl.setFont(new Font("Verdana", Font.BOLD, 32));
 		loginPane.add(signInLbl);
 		
 		JButton switchRegisterBtn = new JButton("Register");
@@ -136,7 +136,7 @@ public class LoginRegistrationPane extends JPanel {
 		
 		// Registration Pane Construction
 		JPanel registrationPane = new JPanel();
-		registrationPane.setBackground(new Color(226, 230, 226));
+		registrationPane.setBackground(new Color(255, 255, 255));
 		add(registrationPane, "register");
 		
 		registrationPane.setLayout(null);
@@ -144,8 +144,8 @@ public class LoginRegistrationPane extends JPanel {
 		JLabel registerLbl = new JLabel("Registration");
 		registerLbl.setForeground(new Color(0, 0, 0));
 		registerLbl.setHorizontalAlignment(SwingConstants.CENTER);
-		registerLbl.setFont(new Font("Verdana", Font.BOLD, 24));
-		registerLbl.setBounds(526, 11, 165, 35);
+		registerLbl.setFont(new Font("Verdana", Font.BOLD, 32));
+		registerLbl.setBounds(495, 11, 230, 40);
 		registrationPane.add(registerLbl);
 		
 		newUserField = new JTextField();
@@ -164,7 +164,6 @@ public class LoginRegistrationPane extends JPanel {
 			}
 		});
 		newUserField.setBounds(505, 134, 205, 35);
-		newUserField.setHorizontalAlignment(SwingConstants.LEFT);
 		newUserField.setText(userPrompt);
 		newUserField.setColumns(10);
 		registrationPane.add(newUserField);
@@ -181,6 +180,8 @@ public class LoginRegistrationPane extends JPanel {
 				//Can use newUserField.getText and new String(newPasswordField.getPassword()) to get user credentials on register page.
 				System.out.println(newUserField.getText());
 				System.out.println(new String(newPasswordField.getPassword()));
+				
+				((CardLayout)getLayout()).show(getPane(), "login");
 			}
 		});
 		registerBtn.setFont(new Font("Verdana", Font.PLAIN, 20));
@@ -209,7 +210,6 @@ public class LoginRegistrationPane extends JPanel {
 		newPasswordField.setBounds(505, 238, 205, 35);
 		newPasswordField.setToolTipText("Password");
 		newPasswordField.setColumns(1);
-		newPasswordField.setHorizontalAlignment(SwingConstants.LEFT);
 		registrationPane.add(newPasswordField);
 		
 		JButton cancelBtn = new JButton("Cancel");
