@@ -18,7 +18,7 @@ public class MainWindow extends JFrame {
 
 	private static final MainWindow main = new MainWindow();
 	
-	public static MainWindow getWindow() {
+	public static MainWindow getFrame() {
 		return main;
 	}
 	
@@ -122,6 +122,7 @@ public class MainWindow extends JFrame {
 		mainPane.add(ParkingLotsPane.getPane(), "parkingLots");
 		mainPane.add(ParkingSpotsPane.getPane(), "parkingSpots");
 		mainPane.add(MyBookingsPane.getPane(), "bookings");
+		mainPane.add(SpotInfoPane.getPane(), "spotInfo");
 		
 		((CardLayout) basePane.getLayout()).show(basePane, "loginMenu");
 		((CardLayout) mainPane.getLayout()).show(mainPane, "parkingLots");

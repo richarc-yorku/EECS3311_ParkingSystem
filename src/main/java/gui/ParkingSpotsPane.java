@@ -1,7 +1,10 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.*;
 
@@ -33,10 +36,10 @@ public class ParkingSpotsPane extends JPanel {
 		Box spotsBox = new Box(1);
 		spotsBox.setBackground(new Color(255, 255, 255));
 		
-		JLabel listLabel = new JLabel("PARKING SPOT X");
-		listLabel.setFont(new Font("Verdana", Font.BOLD, 50));
+		JLabel listLbl = new JLabel("PARKING SPOT X");
+		listLbl.setFont(new Font("Verdana", Font.BOLD, 50));
 		
-		spotsBox.add(listLabel);
+		spotsBox.add(listLbl);
 		
 		for(int i = 0; i < 30; i++) {
 			spotsBox.add(Box.createRigidArea(new Dimension(0, 24)));
@@ -44,9 +47,13 @@ public class ParkingSpotsPane extends JPanel {
 			lbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR)); 
             lbl.setForeground(Color.BLACK);
             lbl.setFont(new Font("Dialog", Font.PLAIN, 32));
+            lbl.addMouseListener(new MouseAdapter() {
+    			public void mouseClicked(MouseEvent e) {
+					((CardLayout) getParent().getLayout()).show(getParent(), "spotInfo");
+    			}
+    		});
             
             spotsBox.add(lbl);
-		
 		}
 		
 		JScrollPane listScrollPane = new JScrollPane(spotsBox);

@@ -35,10 +35,10 @@ public class ParkingLotsPane extends JPanel {
 		Box lotsBox = new Box(1);
 		lotsBox.setBackground(new Color(255, 255, 255));
 		
-		JLabel listLabel = new JLabel("PARKING LOTS");
-		listLabel.setFont(new Font("Verdana", Font.BOLD, 50));
+		JLabel listLbl = new JLabel("PARKING LOTS");
+		listLbl.setFont(new Font("Verdana", Font.BOLD, 50));
 		
-		lotsBox.add(listLabel);
+		lotsBox.add(listLbl);
 		
 		for(int i = 0; i < 7; i++) {
 			lotsBox.add(Box.createRigidArea(new Dimension(0, 24)));
@@ -52,7 +52,6 @@ public class ParkingLotsPane extends JPanel {
     			}
     		});
             lotsBox.add(lbl);
-		
 		}
 		
 		JScrollPane listScrollPane = new JScrollPane(lotsBox);

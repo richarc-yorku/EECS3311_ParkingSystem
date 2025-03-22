@@ -33,10 +33,10 @@ public class MyBookingsPane extends JPanel {
 		Box bookingsBox = new Box(1);
 		bookingsBox.setBackground(new Color(255, 255, 255));
 		
-		JLabel listLabel = new JLabel("MY BOOKINGS");
-		listLabel.setFont(new Font("Verdana", Font.BOLD, 50));
+		JLabel listLbl = new JLabel("MY BOOKINGS");
+		listLbl.setFont(new Font("Verdana", Font.BOLD, 50));
 		
-		bookingsBox.add(listLabel);
+		bookingsBox.add(listLbl);
 		
 	
 		bookingsBox.add(Box.createRigidArea(new Dimension(0, 24)));
