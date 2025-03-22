@@ -33,12 +33,16 @@ public class MainWindow extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1280, 720);
 		setLocationRelativeTo(null);
+		
 		basePane = new JPanel();
 		basePane.setBackground(new Color(229, 91, 28));
 		basePane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
 		setContentPane(basePane);
 		basePane.setLayout(new CardLayout(0, 0));
+		
+		JPanel mainPane = new JPanel();
+		mainPane.setBackground(new Color(255, 255, 255));
+		mainPane.setLayout(new CardLayout(0, 0));
 		
 		JPanel borderPane = new JPanel();
 		basePane.add(borderPane, "mainPage");
@@ -47,6 +51,7 @@ public class MainWindow extends JFrame {
 		JPanel headerPane = new JPanel();
 		headerPane.setBackground(new Color(229, 91, 28));
 		borderPane.add(headerPane, BorderLayout.NORTH);
+		borderPane.add(mainPane, BorderLayout.CENTER);
 		headerPane.setLayout(new BorderLayout(0, 0));
 		
 		JPanel optionsPane = new JPanel();
@@ -54,6 +59,12 @@ public class MainWindow extends JFrame {
 		headerPane.add(optionsPane, BorderLayout.WEST);
 		
 		JButton homeBtn = new JButton("Home");
+		homeBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				((CardLayout) mainPane.getLayout()).show(mainPane, "parkingLots");
+			}
+		});
 		homeBtn.setBackground(new Color(255, 255, 255));
 		homeBtn.setForeground(new Color(0, 0, 0));
 		homeBtn.setFont(new Font("Verdana", Font.PLAIN, 24));
@@ -99,14 +110,12 @@ public class MainWindow extends JFrame {
 		logOutBtn.setFont(new Font("Verdana", Font.PLAIN, 24));
 		extraOptPane.add(logOutBtn);
 		
-		JPanel mainPane = new JPanel();
-		mainPane.setBackground(new Color(255, 255, 255));
-		borderPane.add(mainPane, BorderLayout.CENTER);
-		mainPane.setLayout(new CardLayout(0, 0));
+		
 		
 		//Combining
 		basePane.add(LoginRegistrationPane.getPane(), "loginMenu");
 		mainPane.add(ParkingLotsPane.getPane(), "parkingLots");
+		mainPane.add(ParkingSpotsPane.getPane(), "parkingSpots");
 		
 		((CardLayout) basePane.getLayout()).show(basePane, "loginMenu");
 		((CardLayout) mainPane.getLayout()).show(mainPane, "parkingLots");
