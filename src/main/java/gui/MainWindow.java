@@ -69,6 +69,12 @@ public class MainWindow extends JFrame {
 		optionsPane.add(homeBtn);
 		
 		JButton bookingsBtn = new JButton("My Bookings");
+		bookingsBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				((CardLayout) mainPane.getLayout()).show(mainPane, "bookings");
+			}
+		});
 		bookingsBtn.setForeground(new Color(0, 0, 0));
 		bookingsBtn.setBackground(new Color(255, 255, 255));
 		bookingsBtn.setFont(new Font("Verdana", Font.PLAIN, 24));
@@ -101,6 +107,7 @@ public class MainWindow extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				((CardLayout) basePane.getLayout()).show(basePane, "loginMenu");
+				((CardLayout) mainPane.getLayout()).show(mainPane, "parkingLots");
 			}
 		});
 		logOutBtn.setForeground(new Color(0, 0, 0));
@@ -114,6 +121,7 @@ public class MainWindow extends JFrame {
 		basePane.add(LoginRegistrationPane.getPane(), "loginMenu");
 		mainPane.add(ParkingLotsPane.getPane(), "parkingLots");
 		mainPane.add(ParkingSpotsPane.getPane(), "parkingSpots");
+		mainPane.add(MyBookingsPane.getPane(), "bookings");
 		
 		((CardLayout) basePane.getLayout()).show(basePane, "loginMenu");
 		((CardLayout) mainPane.getLayout()).show(mainPane, "parkingLots");
