@@ -10,6 +10,10 @@ public class Client {
 		return username;
 	}
 	
+	public String getPassword() {
+		return password;
+	}
+	
 	public Boolean isManager() {
 		return isManager;
 	}

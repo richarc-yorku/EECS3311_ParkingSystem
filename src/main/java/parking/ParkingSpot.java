@@ -1,29 +1,26 @@
 package parking;
 
-public class ParkingSpot extends ParkingLot {
-    private int spotID;
+public class ParkingSpot{
+    private String spotID;
     private boolean spotStatus;
     private Sensor sensor;
 
-    public ParkingSpot(int lotID, int spotID) {
-        super(lotID);
+    public ParkingSpot(String spotID, boolean spotStatus) {
         this.spotID = spotID;
         this.spotStatus = true;
         this.sensor = new Sensor();
     }
 
-    public int getSpotID() {
-        return spotID;
-    }
-
-    public boolean isAvailable() {
+    public boolean getStatus() {
         return spotStatus;
     }
 
-    public void setAvailable(boolean status) {
-        this.spotStatus = status;
+    public void setStatus(boolean status) {
+    	this.spotStatus = status;
     }
-
+    
+    // pretty sure this should simulate the sensor reading something and
+    // return instead of setting - richard
     public void updateSpot(String detectedLicense) {
         sensor.scanSpot(detectedLicense);
         this.spotStatus = !sensor.isOccupied();

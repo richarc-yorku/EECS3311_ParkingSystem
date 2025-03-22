@@ -2,49 +2,32 @@ package parking;
 
 import java.util.ArrayList;
 
-public class ParkingLot extends ParkingManagement {
-    private int lotID;
+public class ParkingLot {
+    private char lotID;
     private boolean lotStatus;
-    private ArrayList<ParkingSpot> spots;
-
-    public ParkingLot(int lotID) {
+    private ParkingSpot[] spots;
+    
+    public ParkingLot(char lotID, boolean lotStatus, ParkingSpot[] spots) {
         this.lotID = lotID;
-        this.lotStatus = true;
-        this.spots = new ArrayList<>();
+        this.lotStatus = lotStatus;
+        this.spots = spots;
     }
 
-	public int getId() {
-        return lotID;
+    public char getID() {
+    	return lotID;
     }
-
-    public boolean isAvailable() {
+    
+    public boolean getStatus() {
         return lotStatus;
     }
 
-    public void setAvailable(boolean lotStatus) {
-        this.lotStatus = lotStatus;
+    public void setStatus(boolean status) {
+        this.lotStatus = status;
     }
-
-    public void addSpot(ParkingSpot spot) {
-        spots.add(spot);
-    }
-
-    public boolean isSpotAvailable(int spotID) {
-        for (ParkingSpot spot : spots) {
-            if (spot.getId() == spotID) {
-                return spot.isAvailable();
-            }
-        }
-        return false;
-    }
-
-    public void setSpotAvailability(int spotID, boolean status) {
-        for (ParkingSpot spot : spots) {
-            if (spot.getId() == spotID) {
-                spot.setAvailable(status);
-                break;
-            }
-        }
+    
+    // this passes a reference, do not send a copy
+    
+    public ParkingSpot[] getSpots(){
+    	return spots;
     }
 }
-	// Feel free to change it if I made any glaring mistakes
