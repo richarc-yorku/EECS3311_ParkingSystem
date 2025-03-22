@@ -81,11 +81,11 @@ public class MainWindow extends JFrame {
 		managerFt2Btn.setFont(new Font("Verdana", Font.PLAIN, 24));
 		extraOptPane.add(managerFt2Btn);
 		
-		JButton managerFt3Btn = new JButton("Manager Ft 3");
-		managerFt3Btn.setForeground(new Color(226, 230, 226));
-		managerFt3Btn.setBackground(new Color(44, 45, 44));
-		managerFt3Btn.setFont(new Font("Verdana", Font.PLAIN, 24));
-		extraOptPane.add(managerFt3Btn);
+		JButton searchBtn = new JButton("Search");
+		searchBtn.setForeground(new Color(226, 230, 226));
+		searchBtn.setBackground(new Color(44, 45, 44));
+		searchBtn.setFont(new Font("Verdana", Font.PLAIN, 24));
+		extraOptPane.add(searchBtn);
 		
 		JButton logOutBtn = new JButton("Log Out");
 		logOutBtn.addMouseListener(new MouseAdapter() {
